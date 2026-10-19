@@ -4,13 +4,58 @@
      SPDX-License-Identifier: Apache-2.0
 -->
 <resources>
-    <color name="theme_primary">#f5f5f5</color>
-    <color name="theme_primary_dark">#e0e0e0</color>
-    <color name="theme_accent">@*android:color/accent_device_default_light</color>
-    <color name="background">@android:color/system_neutral1_50</color>
-    <color name="toolbar_collapsed">@android:color/system_neutral1_100</color>
+    <color name="theme_primary">#F5F7FC</color>
+    <color name="theme_primary_dark">#E4E9F2</color>
+    <color name="theme_accent">#0066FF</color>
+    <color name="background">#F5F7FC</color>
+    <color name="toolbar_collapsed">#E9EEF7</color>
     <color name="tv_background">#FF0E0E0F</color>
     <color name="tv_card_background">#222222</color>
+    <color name="inverted">#16181E</color>
 
-    <color name="inverted">#212121</color>
+    <!-- Hero Status Banner (Light Mode) -->
+    <color name="updater_hero_bg_start">#E6F0FF</color>
+    <color name="updater_hero_bg_end">#EFE8FF</color>
+    <color name="updater_hero_stroke">#C9D6EA</color>
+    <color name="updater_hero_title_text">#0F172A</color>
+    <color name="updater_hero_sub_text">#475569</color>
+    <color name="updater_hero_badge_bg">#2616A34A</color>
+    <color name="updater_hero_badge_stroke">#4D16A34A</color>
+    <color name="updater_hero_badge_text">#0D9448</color>
+
+    <!-- Hero Action Chips -->
+    <color name="updater_chip_primary_bg">#0066FF</color>
+    <color name="updater_chip_primary_text">#FFFFFF</color>
+    <color name="updater_chip_sec_bg">#99FFFFFF</color>
+    <color name="updater_chip_sec_stroke">#B8C7E0</color>
+    <color name="updater_chip_sec_text">#334155</color>
+
+    <!-- M3 Expressive Card Surfaces (Light Mode) -->
+    <color name="updater_card_version">#D8EEFF</color>
+    <color name="updater_card_date">#F2DFFF</color>
+    <color name="updater_card_ota">#D5F8E3</color>
+    <color name="updater_card_empty">#CCFBF1</color>
+    <color name="updater_card_info">#FFF0C2</color>
+
+    <!-- M3 Expressive Tonal Typography (Light Mode) -->
+    <color name="updater_text_version">#002B4D</color>
+    <color name="updater_text_date">#360052</color>
+    <color name="updater_text_ota">#053B1C</color>
+    <color name="updater_text_empty">#00382E</color>
+    <color name="updater_text_info">#422C00</color>
+
+    <!-- 15dp Squircle Icon Backgrounds (Light Mode) -->
+    <color name="updater_icon_version">#0077E6</color>
+    <color name="updater_icon_date">#9333EA</color>
+    <color name="updater_icon_ota">#16A34A</color>
+    <color name="updater_icon_empty">#0D9488</color>
+    <color name="updater_icon_info">#D97706</color>
+
+    <!-- OTA Card Controls & Progress -->
+    <color name="updater_btn_action_bg">#16A34A</color>
+    <color name="updater_btn_action_text">#FFFFFF</color>
+    <color name="updater_size_pill_bg">#B8F2D0</color>
+    <color name="updater_size_pill_text">#053B1C</color>
+    <color name="updater_progress_track">#22053B1C</color>
+    <color name="updater_progress_fill">#16A34A</color>
 </resources>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
      SPDX-FileCopyrightText: The LineageOS Project
+     SPDX-FileCopyrightText: 2026 The SuperiorOS Project
      SPDX-License-Identifier: Apache-2.0
 -->
 <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -10,6 +11,7 @@
     android:id="@+id/main_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     android:fitsSystemWindows="true">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -19,7 +21,7 @@
         android:fitsSystemWindows="true"
         android:outlineAmbientShadowColor="@android:color/transparent"
         android:outlineSpotShadowColor="@android:color/transparent"
-        android:background="?android:attr/colorPrimary"
+        android:background="@color/background"
         android:theme="@style/Theme.CollapsingToolbar.Settings">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
@@ -30,7 +32,7 @@
             app:forceApplySystemWindowInsetTop="true"
             app:extraMultilineHeightEnabled="true"
             app:contentScrim="@color/toolbar_collapsed"
-            app:maxLines="3"
+            app:maxLines="2"
             app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
             app:scrimAnimationDuration="50"
             app:scrimVisibleHeightTrigger="@dimen/settingslib_scrim_visible_height_trigger"
@@ -46,49 +48,308 @@
                 android:id="@+id/header_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="86dp"
-                android:paddingBottom="16dp"
-                android:paddingEnd="16dp"
-                android:paddingStart="16dp"
+                android:layout_marginTop="64dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="6dp"
+                android:clipChildren="false"
+                android:clipToPadding="false"
                 app:layout_collapseMode="parallax">
 
-                <TextView
-                    android:id="@+id/header_title"
-                    android:layout_width="wrap_content"
+                <!-- 1. M3 EXPRESSIVE HERO STATUS BANNER -->
+                <LinearLayout
+                    android:id="@+id/updater_hero_card"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-light"
-                    android:paddingBottom="16dp"
-                    android:textColor="?android:attr/textColorPrimary"
-                    android:textSize="56sp"
-                    tools:text="SuperiorOS\n20"/>
+                    android:layout_margin="4dp"
+                    android:background="@drawable/bg_updater_hero_banner"
+                    android:orientation="vertical"
+                    android:padding="18dp">
 
-                <TextView
-                    android:id="@+id/header_build_version"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/header_title"
-                    android:textColor="?android:attr/textColorPrimary"
-                    android:textSize="12sp"
-                    tools:text="Android 13"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/header_build_date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/header_build_version"
-                    android:textColor="?android:attr/textColorPrimary"
-                    android:textSize="12sp"
-                    tools:text="1970-01-01"/>
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/header_last_check"
-                    android:layout_width="wrap_content"
+                            <TextView
+                                android:id="@+id/header_title"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="sans-serif-medium"
+                                android:textColor="@color/updater_hero_title_text"
+                                android:textSize="18sp"
+                                android:textStyle="bold"
+                                tools:text="SuperiorOS 16.2" />
+
+                            <TextView
+                                android:id="@+id/header_last_check"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="3dp"
+                                android:textColor="@color/updater_hero_sub_text"
+                                android:textSize="11.5sp"
+                                tools:text="Last checked: Today, 6:54 PM" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/hero_status_badge"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:background="@drawable/bg_updater_hero_badge"
+                            android:paddingStart="11dp"
+                            android:paddingEnd="11dp"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp"
+                            android:text="@string/updater_badge_up_to_date"
+                            android:textColor="@color/updater_hero_badge_text"
+                            android:textSize="11sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <!-- 4-Across Integrated Action Chips -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/chip_check_updates"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="6dp"
+                            android:background="@drawable/bg_updater_chip_primary"
+                            android:gravity="center"
+                            android:paddingTop="9dp"
+                            android:paddingBottom="9dp"
+                            android:paddingStart="4dp"
+                            android:paddingEnd="4dp"
+                            android:singleLine="true"
+                            android:text="@string/updater_chip_check"
+                            android:textColor="@color/updater_chip_primary_text"
+                            android:textSize="11.5sp"
+                            android:textStyle="bold"
+                            android:clickable="true"
+                            android:focusable="true" />
+
+                        <TextView
+                            android:id="@+id/chip_local_update"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="6dp"
+                            android:background="@drawable/bg_updater_chip_secondary"
+                            android:gravity="center"
+                            android:paddingTop="9dp"
+                            android:paddingBottom="9dp"
+                            android:paddingStart="4dp"
+                            android:paddingEnd="4dp"
+                            android:singleLine="true"
+                            android:text="@string/updater_chip_local"
+                            android:textColor="@color/updater_chip_sec_text"
+                            android:textSize="11.5sp"
+                            android:textStyle="bold"
+                            android:clickable="true"
+                            android:focusable="true" />
+
+                        <TextView
+                            android:id="@+id/chip_changelog"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="6dp"
+                            android:background="@drawable/bg_updater_chip_secondary"
+                            android:gravity="center"
+                            android:paddingTop="9dp"
+                            android:paddingBottom="9dp"
+                            android:paddingStart="4dp"
+                            android:paddingEnd="4dp"
+                            android:singleLine="true"
+                            android:text="@string/updater_chip_changelog"
+                            android:textColor="@color/updater_chip_sec_text"
+                            android:textSize="11.5sp"
+                            android:textStyle="bold"
+                            android:clickable="true"
+                            android:focusable="true" />
+
+                        <TextView
+                            android:id="@+id/chip_preferences"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_updater_chip_secondary"
+                            android:gravity="center"
+                            android:paddingTop="9dp"
+                            android:paddingBottom="9dp"
+                            android:paddingStart="4dp"
+                            android:paddingEnd="4dp"
+                            android:singleLine="true"
+                            android:text="@string/updater_chip_settings"
+                            android:textColor="@color/updater_chip_sec_text"
+                            android:textSize="11.5sp"
+                            android:textStyle="bold"
+                            android:clickable="true"
+                            android:focusable="true" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- 2. 2-COLUMN M3 EXPRESSIVE TELEMETRY BENTO ROW -->
+                <LinearLayout
+                    android:id="@+id/updater_bento_telemetry_row"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/header_build_date"
-                    android:layout_marginTop="8dp"
-                    android:textColor="?android:attr/textColorPrimary"
-                    android:textSize="12sp"
-                    tools:text="Last checked: 1970-01-01"/>
+                    android:layout_below="@id/updater_hero_card"
+                    android:layout_marginTop="2dp"
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
+
+                    <!-- Left Card: System Version -->
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/bg_updater_card_version"
+                        android:minHeight="136dp">
+
+                        <ImageView
+                            android:layout_width="26dp"
+                            android:layout_height="26dp"
+                            android:layout_gravity="bottom|end"
+                            android:layout_marginEnd="36dp"
+                            android:layout_marginBottom="46dp"
+                            android:src="@drawable/ic_updater_version"
+                            android:tint="@color/updater_text_version"
+                            android:alpha="0.10"
+                            android:rotation="-12"
+                            android:contentDescription="@null" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:padding="18dp">
+
+                            <FrameLayout
+                                android:layout_width="44dp"
+                                android:layout_height="44dp"
+                                android:background="@drawable/bg_updater_sq_version">
+
+                                <ImageView
+                                    android:layout_width="24dp"
+                                    android:layout_height="24dp"
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/ic_updater_version"
+                                    android:tint="#FFFFFF"
+                                    android:contentDescription="@null" />
+                            </FrameLayout>
+
+                            <Space
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:minHeight="14dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/updater_card_version_label"
+                                android:textColor="@color/updater_text_version"
+                                android:textSize="15.5sp"
+                                android:textStyle="bold"
+                                android:fontFamily="sans-serif-medium" />
+
+                            <TextView
+                                android:id="@+id/header_build_version"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:textColor="@color/updater_text_version"
+                                android:alpha="0.80"
+                                android:textSize="12sp"
+                                tools:text="Android 16" />
+                        </LinearLayout>
+                    </FrameLayout>
+
+                    <!-- Right Card: Installed Build Date -->
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.15"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/bg_updater_card_date"
+                        android:minHeight="136dp">
+
+                        <ImageView
+                            android:layout_width="26dp"
+                            android:layout_height="26dp"
+                            android:layout_gravity="bottom|end"
+                            android:layout_marginEnd="36dp"
+                            android:layout_marginBottom="46dp"
+                            android:src="@drawable/ic_updater_shield"
+                            android:tint="@color/updater_text_date"
+                            android:alpha="0.10"
+                            android:rotation="-12"
+                            android:contentDescription="@null" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:padding="18dp">
+
+                            <FrameLayout
+                                android:layout_width="44dp"
+                                android:layout_height="44dp"
+                                android:background="@drawable/bg_updater_sq_date">
+
+                                <ImageView
+                                    android:layout_width="24dp"
+                                    android:layout_height="24dp"
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/ic_updater_shield"
+                                    android:tint="#FFFFFF"
+                                    android:contentDescription="@null" />
+                            </FrameLayout>
+
+                            <Space
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:minHeight="14dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/updater_card_date_label"
+                                android:textColor="@color/updater_text_date"
+                                android:textSize="15.5sp"
+                                android:textStyle="bold"
+                                android:fontFamily="sans-serif-medium" />
+
+                            <TextView
+                                android:id="@+id/header_build_date"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:textColor="@color/updater_text_date"
+                                android:alpha="0.80"
+                                android:textSize="12sp"
+                                android:maxLines="1"
+                                android:ellipsize="end"
+                                tools:text="October 19, 2026" />
+                        </LinearLayout>
+                    </FrameLayout>
+                </LinearLayout>
             </RelativeLayout>
 
             <androidx.appcompat.widget.Toolbar
@@ -97,31 +358,140 @@
                 android:layout_height="?attr/actionBarSize"
                 android:theme="?android:attr/actionBarTheme"
                 android:transitionName="shared_element_view"
-                app:layout_collapseMode="pin"/>
+                app:layout_collapseMode="pin" />
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
+    <!-- 3. EMPTY STATE: M3 EXPRESSIVE BENTO CARDS -->
     <androidx.core.widget.NestedScrollView
         android:id="@+id/no_new_updates_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="46dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:paddingBottom="28dp"
+        android:clipToPadding="false"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/list_no_updates"
-            android:textColor="?android:textColorSecondary" />
+            android:orientation="vertical">
+
+           <!-- Up-to-Date Card -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/bg_updater_card_empty"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="18dp">
+
+                <FrameLayout
+                    android:layout_width="46dp"
+                    android:layout_height="46dp"
+                    android:background="@drawable/bg_updater_sq_empty">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_updater_check"
+                        android:tint="#FFFFFF"
+                        android:contentDescription="@null" />
+                </FrameLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="14dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/updater_empty_title"
+                        android:textColor="@color/updater_text_empty"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:fontFamily="sans-serif-medium" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:text="@string/list_no_updates"
+                        android:textColor="@color/updater_text_empty"
+                        android:alpha="0.78"
+                        android:textSize="11.5sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Info Tip Card -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/bg_updater_card_info"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="18dp">
+
+                <FrameLayout
+                    android:layout_width="46dp"
+                    android:layout_height="46dp"
+                    android:background="@drawable/bg_updater_sq_info">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_system_update"
+                        android:tint="#FFFFFF"
+                        android:contentDescription="@null" />
+                </FrameLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="14dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/updater_info_title"
+                        android:textColor="@color/updater_text_info"
+                        android:textSize="15.5sp"
+                        android:textStyle="bold"
+                        android:fontFamily="sans-serif-medium" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:text="@string/info_dialog_message"
+                        android:textColor="@color/updater_text_info"
+                        android:alpha="0.78"
+                        android:textSize="11.5sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
+    <!-- 4. AVAILABLE OTA UPDATES RECYCLERVIEW -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToPadding="false"
-        android:paddingBottom="5dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:paddingBottom="24dp"
         android:scrollbars="vertical"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:listitem="@layout/update_item_view" />

@@ -145,6 +145,12 @@ public class UpdatesListAdapter extends RecyclerView.Adapter<UpdatesListAdapter.
     private void handleActiveStatus(ViewHolder viewHolder, UpdateInfo update) {
         boolean canDelete = false;
 
+        // M3 Expressive Visibility: Show progress bar and hide build size pill when active
+        viewHolder.mMenu.setOnClickListener(getClickListener(update, canDelete, viewHolder.mMenu));
+        viewHolder.mProgress.setVisibility(View.VISIBLE);
+        viewHolder.mProgressText.setVisibility(View.VISIBLE);
+        viewHolder.mBuildSize.setVisibility(View.GONE);
+
         final String downloadId = update.getDownloadId();
         if (mUpdaterController.isDownloading(downloadId)) {
             canDelete = true;
@@ -223,9 +229,11 @@ public class UpdatesListAdapter extends RecyclerView.Adapter<UpdatesListAdapter.
         String fileSize = Formatter.formatShortFileSize(mActivity, update.getFileSize());
         viewHolder.mBuildSize.setText(fileSize);
 
-        viewHolder.mProgress.setVisibility(View.INVISIBLE);
+       // M3 Expressive Visibility: Hide progress bar container when not active, show size pill badge
+        viewHolder.mProgress.setVisibility(View.GONE);
         viewHolder.mProgressText.setVisibility(View.INVISIBLE);
         viewHolder.mBuildSize.setVisibility(View.VISIBLE);
+        viewHolder.mMenu.setOnClickListener(getClickListener(update, update.getPersistentStatus() == UpdateStatus.Persistent.VERIFIED || !isBusy(), viewHolder.mMenu));
     }
 
     @Override

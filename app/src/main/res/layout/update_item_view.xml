@@ -1,127 +1,185 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
      SPDX-FileCopyrightText: The LineageOS Project
+     SPDX-FileCopyrightText: 2026 The SuperiorOS Project
      SPDX-License-Identifier: Apache-2.0
 -->
-<androidx.cardview.widget.CardView
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:background="@drawable/bg_updater_card_ota"
     android:focusable="true"
-    android:foreground="?attr/selectableItemBackground"
-    android:nextFocusRight="@+id/update_action"
-    android:layout_marginTop="8dp"
-    android:layout_marginStart="8dp"
-    android:layout_marginEnd="8dp"
-    app:cardCornerRadius="16dp"
-    app:contentPadding="16dp">
+    android:nextFocusRight="@+id/update_action">
+
+    <!-- Faint Rotated Watermark Icon -->
+    <ImageView
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="110dp"
+        android:layout_marginBottom="24dp"
+        android:src="@drawable/ic_updater_cloud"
+        android:tint="@color/updater_text_ota"
+        android:alpha="0.10"
+        android:rotation="-12"
+        android:contentDescription="@null" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:weightSum="1"
-        android:baselineAligned="false">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="18dp">
 
+        <!-- Top Row: 15dp Squircle Icon + Build Version/Date + Size Pill + 3-Dot Menu -->
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/build_version"
-                android:layout_width="wrap_content"
+            <FrameLayout
+                android:layout_width="46dp"
+                android:layout_height="46dp"
+                android:background="@drawable/bg_updater_sq_ota">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_updater_cloud"
+                    android:tint="#FFFFFF"
+                    android:contentDescription="@null" />
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:alpha="0.87"
-                android:drawablePadding="8dp"
-                android:maxLines="1"
-                android:paddingBottom="8sp"
-                android:textColor="?android:attr/textColorPrimary"
-                android:textSize="16sp"
-                tools:text="SuperiorOS 20" />
-
-            <TextView
-                android:id="@+id/build_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:maxLines="1"
-                android:textSize="14sp"
-                tools:text="18 June 2023" />
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/progress"
-                    android:visibility="invisible"
-                    tools:visibility="visible">
-
-                    <ProgressBar
-                        android:id="@+id/progress_bar"
-                        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:paddingTop="4sp"
-                        tools:progress="65" />
-
-                    <TextView
-                        android:id="@+id/progress_percent"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingStart="8dp"
-                        android:paddingEnd="8dp"
-                        tools:text="65%" />
-                </LinearLayout>
+                android:layout_weight="1"
+                android:layout_marginStart="14dp"
+                android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/progress_text"
+                    android:id="@+id/build_version"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/progress"
-                    android:ellipsize="marquee"
-                    android:singleLine="true"
-                    android:visibility="invisible"
-                    tools:text="162 of 1.1 GB (3 minutes left)"
-                    tools:visibility="visible" />
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:textColor="@color/updater_text_ota"
+                    android:textSize="16.5sp"
+                    android:textStyle="bold"
+                    android:fontFamily="sans-serif-medium"
+                    tools:text="SuperiorOS 16.2" />
 
                 <TextView
-                    android:id="@+id/build_size"
+                    android:id="@+id/build_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingTop="8sp"
-                    android:singleLine="true"
-                    tools:text="1.1 GB"
-                    tools:visibility="invisible" />
-            </RelativeLayout>
-        </LinearLayout>
+                    android:layout_marginTop="2dp"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:textColor="@color/updater_text_ota"
+                    android:alpha="0.78"
+                    android:textSize="12sp"
+                    tools:text="October 19, 2026" />
+            </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            <TextView
+                android:id="@+id/build_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:background="@drawable/bg_updater_size_pill"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:singleLine="true"
+                android:textColor="@color/updater_size_pill_text"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                tools:text="1.8 GB" />
+
             <ImageButton
                 android:id="@+id/update_menu"
                 style="?android:attr/actionOverflowButtonStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:padding="8dp"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_marginStart="2dp"
+                android:tint="@color/updater_text_ota"
                 android:contentDescription="@null" />
-            <Button
-                android:id="@id/update_action"
-                style="@style/Widget.AppCompat.Button.Borderless.Colored"
-                android:background="?android:selectableItemBackgroundBorderless"
+        </LinearLayout>
+
+        <!-- Middle Row: Download / Install Progress Bar & Status -->
+        <LinearLayout
+            android:id="@+id/progress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="0dp"
+                android:layout_height="10dp"
+                android:layout_weight="1"
+                android:progressDrawable="@drawable/bg_updater_progress"
+                tools:progress="65" />
+
+            <TextView
+                android:id="@+id/progress_percent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="8dp"
-                tools:text="Pause" />
+                android:layout_marginStart="10dp"
+                android:textColor="@color/updater_text_ota"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                tools:text="65%" />
+        </LinearLayout>
+
+        <!-- Bottom Row: Progress Text + Primary 50dp Pill Action Button -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/progress_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="10dp"
+                android:ellipsize="marquee"
+                android:singleLine="true"
+                android:textColor="@color/updater_text_ota"
+                android:alpha="0.82"
+                android:textSize="11.5sp"
+                android:visibility="invisible"
+                tools:text="1.1 GB of 1.8 GB (3m left)"
+                tools:visibility="visible" />
+
+            <Button
+                android:id="@+id/update_action"
+                android:layout_width="wrap_content"
+                android:layout_height="38dp"
+                android:minWidth="112dp"
+                android:background="@drawable/bg_updater_btn_action"
+                android:paddingStart="18dp"
+                android:paddingEnd="18dp"
+                android:textAllCaps="false"
+                android:textColor="@color/updater_btn_action_text"
+                android:textSize="12.5sp"
+                android:textStyle="bold"
+                android:stateListAnimator="@null"
+                tools:text="Download" />
         </LinearLayout>
     </LinearLayout>
-</androidx.cardview.widget.CardView>
+</FrameLayout>

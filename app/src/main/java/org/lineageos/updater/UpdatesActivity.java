@@ -186,6 +186,29 @@ public class UpdatesActivity extends UpdatesListActivity implements UpdateImport
         headerBuildDate.setText(StringGenerator.getDateLocalizedUTC(this,
                 DateFormat.LONG, BuildInfoUtils.getBuildDateTimestamp()));
 
+        // Bind M3 Expressive Hero Quick Action Chips
+        View chipCheck = findViewById(R.id.chip_check_updates);
+        View chipLocal = findViewById(R.id.chip_local_update);
+        View chipChangelog = findViewById(R.id.chip_changelog);
+        View chipPreferences = findViewById(R.id.chip_preferences);
+
+        if (chipCheck != null) {
+            chipCheck.setOnClickListener(v -> downloadUpdatesList(true));
+        }
+        if (chipLocal != null) {
+            chipLocal.setOnClickListener(v -> mUpdateImporter.openImportPicker());
+        }
+        if (chipChangelog != null) {
+            chipChangelog.setOnClickListener(v -> {
+                Intent openUrl = new Intent(Intent.ACTION_VIEW,
+                        Uri.parse(Utils.getChangelogURL(this)));
+                startActivity(openUrl);
+            });
+        }
+        if (chipPreferences != null) {
+            chipPreferences.setOnClickListener(v -> showPreferencesDialog());
+        }
+
         if (!mIsTV) {
             // Switch between header title and appbar title minimizing overlaps
             final CollapsingToolbarLayout collapsingToolbar = findViewById(R.id.collapsing_toolbar);
@@ -386,14 +409,23 @@ public class UpdatesActivity extends UpdatesListActivity implements UpdateImport
                     Snackbar.LENGTH_SHORT);
         }
 
+        TextView heroBadge = findViewById(R.id.hero_status_badge);
         List<String> updateIds = new ArrayList<>();
         List<UpdateInfo> sortedUpdates = controller.getUpdates();
+
         if (sortedUpdates.isEmpty()) {
             findViewById(R.id.no_new_updates_view).setVisibility(View.VISIBLE);
             findViewById(R.id.recycler_view).setVisibility(View.GONE);
+            if (heroBadge != null) {
+                heroBadge.setText(R.string.updater_badge_up_to_date);
+            }
         } else {
             findViewById(R.id.no_new_updates_view).setVisibility(View.GONE);
             findViewById(R.id.recycler_view).setVisibility(View.VISIBLE);
+            if (heroBadge != null) {
+                heroBadge.setText(getString(R.string.updater_badge_updates_ready,
+                        sortedUpdates.size()));
+            }
             sortedUpdates.sort((u1, u2) -> Long.compare(u2.getTimestamp(), u1.getTimestamp()));
             for (UpdateInfo update : sortedUpdates) {
                 updateIds.add(update.getDownloadId());

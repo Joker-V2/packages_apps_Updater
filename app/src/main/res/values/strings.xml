@@ -88,7 +88,7 @@
 
     <string name="snack_update_not_installable">This update can\'t be installed on top of the current build.</string>
 
-    <string name="header_title_text">SuperiorOS\n%1$s</string>
+    <string name="header_title_text">SuperiorOS %1$s</string>
     <string name="header_android_version">Android <xliff:g id="version" example="7.1.2">%1$s</xliff:g></string>
     <string name="header_last_updates_check">Last checked: <xliff:g id="date" example="1 January 1970">%1$s</xliff:g> (<xliff:g id="time" example="01:23">%2$s</xliff:g>)</string>
 
@@ -168,4 +168,16 @@
 
     <!-- Blocked dialog -->
     <string name="blocked_update_dialog_message_custom">This update cannot be installed using the updater app. Try installing update via recovery.</string>
+
+    <!-- M3 Expressive Updater Dashboard Labels -->
+    <string name="updater_chip_check">Check</string>
+    <string name="updater_chip_local">Local OTA</string>
+    <string name="updater_chip_changelog">Changelog</string>
+    <string name="updater_chip_settings">Settings</string>
+    <string name="updater_badge_up_to_date">● Up to Date</string>
+    <string name="updater_badge_updates_ready">● %1$d Ready</string>
+    <string name="updater_card_version_label">System Version</string>
+    <string name="updater_card_date_label">Installed Build</string>
+    <string name="updater_empty_title">System is up to date</string>
+    <string name="updater_info_title">Full Installation Packages</string>
 </resources>
